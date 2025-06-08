@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Butcher Buddy - Fresh Meat Delivered</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #dc2626;
+      --primary-dark: #b91c1c;
+      --secondary-color: #fef2f2;
+      --accent-color: #f97316;
+      --text-dark: #1f2937;
+      --text-light: #6b7280;
+      --white: #ffffff;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --border: #e5e7eb;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Splash Screen */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: all 0.8s ease;
+    }
+
+    .splash-logo {
+      width: 120px;
+      height: 120px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Header */
+    .header {
+      background: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 20px;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-color);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--white);
+      color: var(--primary-color);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 4rem 0;
+      background: var(--white);
+    }
+
+    .features h2 {
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--text-dark);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--secondary-color);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-color);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    /* Categories */
+    .categories-section {
+      padding: 4rem 0;
+      background: linear-gradient(135deg, #f9fafb 0%, var(--secondary-color) 100%);
+    }
+
+    .categories-section h2 {
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--text-dark);
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      background: var(--white);
+      border: 2px solid var(--border);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-dark);
+    }
+
+    .category:hover,
+    .category.active {
+      background: var(--primary-color);
+      color: var(--white);
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    /* Products Grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-image {
+      height: 200px;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 3rem;
+      position: relative;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--success);
+      color: var(--white);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-info h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .product-info p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .product-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .order-btn {
+      background: var(--primary-color);
+      color: var(--white);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .order-btn:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    /* Info Sections */
+    .info-section {
+      padding: 4rem 0;
+      background: var(--white);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+
+    .info-card {
+      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--white) 100%);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border-left: 5px solid var(--primary-color);
+    }
+
+    .info-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+    }
+
+    .info-card p,
+    .info-card li {
+      margin-bottom: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .info-card strong {
+      color: var(--text-dark);
+    }
+
+    .whatsapp-link {
+      color: var(--success);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .whatsapp-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .main-footer {
+      background: var(--text-dark);
+      color: var(--white);
+      padding: 3rem 0 1rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      background: var(--primary-dark);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #374151;
+      color: var(--text-light);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .header-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .categories {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <div class="splash-logo">🥩</div>
+  </div>
+
+  <!-- Main Website Content -->
+  <div id="main-content" style="display: none;">
+    <header class="header">
+      <div class="container header-container">
+        <div class="logo">🥩 Butcher Buddy</div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#products" class="nav-link">Products</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <h1>Fresh Meat, Delivered Fresh</h1>
+        <p>Premium quality chicken, pork, and mutton delivered straight to your doorstep in Chandigarh</p>
+        <a href="https://wa.me/919056551682" class="cta-button" target="_blank">
+          📱 Order on WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h2>Why Choose Butcher Buddy?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🚚</div>
+            <h3>Fast Delivery</h3>
+            <p>Quick delivery in 2 convenient time slots: 10 AM-1 PM & 5 PM-9 PM across all sectors of Chandigarh</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🥩</div>
+            <h3>Fresh Quality</h3>
+            <p>Premium cuts of fresh meat, hygienically processed and packed to maintain highest quality standards</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Easy Ordering</h3>
+            <p>Simple WhatsApp ordering process - just message us your requirements and we'll handle the rest</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="categories-section" id="products">
+      <div class="container">
+        <h2>Our Fresh Meat Selection</h2>
+        
+        <div class="categories">
+          <button class="category active" data-cat="all">All Products</button>
+          <button class="category" data-cat="chicken">🐔 Chicken</button>
+          <button class="category" data-cat="pork">🐷 Pork</button>
+          <button class="category" data-cat="mutton">🐑 Mutton</button>
+        </div>
+
+        <div class="products" id="products-grid">
+          <!-- Products will be dynamically loaded here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-card" id="contact">
+            <h3>📞 Contact & Delivery</h3>
+            <p><strong>Delivery Area:</strong> Chandigarh (All Sectors)</p>
+            <p><strong>Delivery Slots:</strong> 10:00 AM - 1:00 PM & 5:00 PM - 9:00 PM</p>
+            <p><strong>Order Contact:</strong> <a href="https://wa.me/919056551682" class="whatsapp-link" target="_blank">9056551682 (WhatsApp)</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+919056551682">+91 90565 51682</a></p>
+            <p><strong>Address:</strong> Sector 38, Chandigarh, India</p>
+          </div>
+
+          <div class="info-card" id="about">
+            <h3>🏪 About Butcher Buddy</h3>
+            <p>Butcher Buddy is your trusted partner for fresh, quality meat in Chandigarh. We specialize in delivering premium cuts of chicken, pork, and mutton right to your doorstep.</p>
+            <p>Our commitment to freshness, hygiene, and customer satisfaction has made us the preferred choice for meat lovers across the city.</p>
+          </div>
+
+          <div class="info-card">
+            <h3>📋 How to Order</h3>
+            <ol>
+              <li>Browse our fresh meat selection</li>
+              <li>Contact us via WhatsApp with your order</li>
+              <li>Choose your preferred delivery slot</li>
+              <li>Receive fresh meat at your doorstep</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-section">
+            <h4>🥩 Butcher Buddy</h4>
+            <p>Fresh meat delivered to your door in Chandigarh.</p>
+            <p><strong>Email:</strong> butcherbuddy@gmail.com</p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="https://instagram.com" target="_blank" aria-label="Instagram">📷</a>
+              <a href="https://facebook.com" target="_blank" aria-label="Facebook">📘</a>
+              <a href="https://wa.me/919056551682" target="_blank" aria-label="WhatsApp">💬</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Butcher Buddy. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
