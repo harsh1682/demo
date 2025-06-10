@@ -53,6 +53,60 @@ const products = [
     description: "Premium mutton chops - perfect for special occasions",
     icon: "🥩",
     badge: "Premium"
+  },
+  {
+    id: 7,
+    name: "Fresh Chicken Breast",
+    category: "chicken",
+    price: "₹280/kg",
+    description: "Boneless, skinless chicken breast - perfect for healthy meals",
+    icon: "🐔",
+    badge: "Popular"
+  },
+  {
+    id: 8,
+    name: "Chicken Drumsticks",
+    category: "chicken", 
+    price: "₹200/kg",
+    description: "Juicy chicken drumsticks - great for grilling and curry",
+    icon: "🍗",
+    badge: "Fresh"
+  },
+  {
+    id: 9,
+    name: "Pork Shoulder",
+    category: "pork",
+    price: "₹350/kg",
+    description: "Premium pork shoulder cuts - ideal for roasting",
+    icon: "🥩",
+    badge: "Premium"
+  },
+  {
+    id: 10,
+    name: "Pork Ribs",
+    category: "pork",
+    price: "₹400/kg",
+    description: "Tender pork ribs - perfect for BBQ and smoking",
+    icon: "🍖",
+    badge: "BBQ Special"
+  },
+  {
+    id: 11,
+    name: "Mutton Leg",
+    category: "mutton",
+    price: "₹550/kg",
+    description: "Fresh mutton leg pieces - excellent for curry and biryani",
+    icon: "🐑",
+    badge: "Fresh"
+  },
+  {
+    id: 12,
+    name: "Mutton Chops",
+    category: "mutton",
+    price: "₹580/kg",
+    description: "Premium mutton chops - perfect for special occasions",
+    icon: "🥩",
+    badge: "Premium"
   }
 ];
 
